@@ -25,7 +25,9 @@ int main(int argc, char **argv) {
   int err;
   set_realtime_priority(51);
 
-#ifdef QCOM2
+#ifdef QCOM
+  set_core_affinity(2); // TODO: reset?
+#elif QCOM2
   set_core_affinity(5);
 #endif
 
