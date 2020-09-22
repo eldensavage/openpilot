@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
 #ifdef QCOM
   set_core_affinity(2);
 #elif QCOM2
-  set_core_affinity(5);
+  set_core_affinity(4);
 #endif
 
   signal(SIGINT, (sighandler_t)set_do_exit);
@@ -42,6 +42,8 @@ int main(int argc, char **argv) {
 
 #ifdef QCOM // TODO: remove this ifdef for tici?
   set_core_affinity_masked(0xff); // assuming max num_cpus is 8
+#elif QCOM2
+  set_core_affinity(5);
 #endif
 
   // loop
