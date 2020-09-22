@@ -40,8 +40,8 @@ int main(int argc, char **argv) {
   DMonitoringModelState dmonitoringmodel;
   dmonitoring_init(&dmonitoringmodel);
 
-#ifdef QCOM
-  set_core_affinity_masked(0xff);
+#ifdef QCOM // TODO: remove this ifdef for tici?
+  set_core_affinity_masked(0xff); // assuming max num_cpus is 8
 #endif
 
   // loop
