@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
   set_realtime_priority(51);
 
 #ifdef QCOM
-  set_core_affinity(2); // TODO: reset?
+  set_core_affinity(2);
 #elif QCOM2
   set_core_affinity(5);
 #endif
@@ -39,6 +39,10 @@ int main(int argc, char **argv) {
   // init the models
   DMonitoringModelState dmonitoringmodel;
   dmonitoring_init(&dmonitoringmodel);
+
+#ifdef QCOM
+  set_core_affinity_masked(0xff);
+#endif
 
   // loop
   VisionStream stream;

@@ -85,3 +85,13 @@ int set_core_affinity(int core) {
   return -1;
 #endif
 }
+
+int set_core_affinity_masked(uint8_t mask) {
+#ifdef __linux__
+  long tid = syscall(SYS_gettid);
+  // assuming max num_cpus is 8
+  return sched_setaffinity(tid, sizeof(mask), &mask);
+#else
+  return -1;
+#endif
+}
